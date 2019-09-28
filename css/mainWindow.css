@@ -1,0 +1,97 @@
+
+body{
+    margin:0;
+    padding:0;
+    background-color:#81C784;
+
+}
+.button{
+
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: right;
+    text-decoration: none;
+    font-size: 16px;
+}
+.watchList{
+    
+    margin: 10px 20px 20px;
+    border-radius:2%;
+    height:225px;
+    /* width: 90%; */
+    background-color:#FFF176;
+    list-style-type: none;
+
+}
+
+.minMax{
+     margin: 10px 20px 20px 20px;
+    border-radius:2%;
+    height:250px;
+    /* border:20px; */
+    /* width: 90%; */
+    background-color:#90CAF9;
+}
+.rows{
+    display:grid;
+    grid-template-columns: 45% 20% 20% 15% ;
+}
+.rows>div{ 
+    margin:  10px 5px 5px 10px;
+    padding: 8px;
+    border-radius: 5%;
+    background-color :#FFF176;
+}
+/*
+.trigger{
+    
+}
+.min{
+    margin: 5px 10px 5px;
+    padding: 8px;
+    border-radius: 5%;
+    background-color :#FFF176;
+}
+.max{
+    margin: 5px 10px 5px;
+    padding: 8px;
+    border-radius: 5%;
+    background-color :#FFF176;
+}
+.save{
+    margin: 5px 10px 5px;
+    padding: 8px;
+    border-radius: 5%;
+    background-color :#FFF176;
+}
+/* .del{
+    margin: 5px 10px 5px;
+    padding: 8px;
+    border-radius: 5%;
+    background-color :#FFF176;
+} */
+/* .trigger{
+   
+        grid-column: 1 / 5;
+        grid-row: 1;
+          
+}
+.min{ grid-column: 2 / 5;
+    grid-row: 1;
+
+}
+.max{
+     grid-column: 3 / 5;
+    grid-row: 1;
+
+}
+.save{
+    grid-column: 4 / 5;
+    grid-row: 1;
+
+}
+.delete{
+    grid-column: 5 / 5;
+    grid-row: 1;
+} */ 
