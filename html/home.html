@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Shopping App</title>
+    <link href="../css/signup.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <center>
+
+        <form>
+            <center>
+                <h1>Enter Your Phone Number</h1>
+                <input type="number" id="number" class="login-field" placeholder="Phone Number" />
+                <input type="submit" value="Login" class="login-field submit" />
+            </center>
+        </form>
+    </center>
+</body>
+<script>
+    const electron=require("electron");
+    const {ipcRenderer}=electron;
+    console.log(ipcRenderer);
+    const form=document.querySelector("form");
+    form.addEventListener("submit",function(e){
+        const phoneNum=document.querySelector("#number").value;
+        if(phoneNum.toString().length!==10){
+            phoneNum.innerHTML="";
+            alert("Please Enter Valid Phone Number Eg: (XXX-XXX-XXXX)");
+            return;
+        }
+        e.preventDefault();
+        ipcRenderer.send("item:number",phoneNum);
+    });
+    
+</script>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+    </head>
+    <body>
+        <h1 id="phone"></h1>
+    </body>
+    <script>
+    const electron=require("electron");
+    const {ipcRenderer} = electron;
+    console.log(ipcRenderer);
+    const h1=document.querySelector("#phone");
+    console.log("1.1");
+    ipcRenderer.on("item:number",function(e,number){
+        console.log("1");
+        console.log("2");
+        const itemText=document.createTextNode(number);
+        console.log("3");
+        h1.appendChild(itemText);
+        console.log("4");
+    });
+    console.log("1.2");
+    </script>
+</html>
