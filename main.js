@@ -2,8 +2,10 @@ const electron = require("electron");
 const url = require("url");
 const path = require("path");
 
-const { app, Menu, ipcMain,BrowserWindow } = electron;
+const { app, Menu, ipcMain, BrowserWindow } = electron;
 
+//create the twilio client
+const client = require('twilio')('', '')//Private ID and KEY
 let mainWindow;
 
 app.on("ready", function () {
@@ -28,7 +30,16 @@ ipcMain.on("item:number", function (e, number) {
         protocol: 'file:',
         slashes: true
     }));
-    mainWindow.webContents.on("did-finish-load",()=>{
-        mainWindow.webContents.send("item:number",number);
+    mainWindow.webContents.on("did-finish-load", () => {
+        mainWindow.webContents.send("item:number", number);
     });
+});
+//Takes in number and sends sms from twilio
+ipcMain.on("addNum", function (e, number){
+    client.messages.create({
+        to:'+1'+number,
+        from:'+12056511702',
+        body:'Hello World'
+    })
+    .then((message)=> console.log(message.sid));
 });
