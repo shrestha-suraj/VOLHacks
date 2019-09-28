@@ -2,99 +2,33 @@ const electron = require("electron");
 const url = require("url");
 const path = require("path");
 
-const { app, BrowserWindow, Menu, ipcMain } = electron;
+const { app, Menu, ipcMain,BrowserWindow } = electron;
 
 let mainWindow;
-let addWindow;
-app.on('ready', function () {
+
+app.on("ready", function () {
     mainWindow = new BrowserWindow({
-        width:
-        webPreferences:{nodeIntegration:true}});
+        width: 500,
+        height: 600,
+        resizable: false,
+        webPreferences: { nodeIntegration: true }
+
+    });
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname,"html", 'mainWindow.html'),
+        pathname: path.join(__dirname, "html", "home.html"),
         protocol: 'file:',
         slashes: true
     }));
-
-    mainWindow.on("closed", function () {
-        app.quit();
-    });
-    const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
-    Menu.setApplicationMenu(mainMenu);
+    mainWindow.setMenu(null);
 });
 
-
-
-function createAddWindow() {
-    addWindow = new BrowserWindow({
-        width: 300,
-        height: 200,
-        title: 'Add Shopping List Item',
-        webPreferences:{nodeIntegration:true}
-    });
-    addWindow.loadURL(url.format({
-        pathname: path.join(__dirname,"html", "addWindow.html"),
-        protocol: 'file',
+ipcMain.on("item:number", function (e, number) {
+    mainWindow.loadURL(url.format({
+        pathname: path.join(__dirname, "html", "index.html"),
+        protocol: 'file:',
         slashes: true
     }));
-
-    addWindow.on("closed", function () {
-        addWindow = null;
+    mainWindow.webContents.on("did-finish-load",()=>{
+        mainWindow.webContents.send("item:number",number);
     });
-}
-
-ipcMain.on("item:add",function(e,item){
-    mainWindow.webContents.send("item:add",item);
-    addWindow.close();
 });
-
-
-
-const mainMenuTemplate = [{
-    label: 'File',
-    submenu: [
-        {
-            label: 'Add Item',
-            click() {
-                createAddWindow();
-            }
-        },
-        {
-            label: 'Clear Items',
-            click(){
-                mainWindow.webContents.send("item: clear");
-            }
-        },
-        {
-            label: 'Quit',
-            accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
-            click() {
-                app.quit();
-            }
-        }]
-
-}
-];
-
-if (process.platform == 'darwin') {
-    mainMenuTemplate.unshift({});
-}
-
-if (process.env.NODE_ENV !== 'production') {
-    mainMenuTemplate.push({
-        label: 'Devloper Mode',
-        submenu:[
-            {
-                label:'Toggle Devtools',
-                accelerator: process.platform == 'darwin' ? 'Command+I' : 'Ctrl+I',
-                click(item,focusedWindow){
-                    focusedWindow.toggleDevTools();
-                }
-            },
-            {
-                role:'reload'
-            }
-        ]
-    }
-    );
-}
