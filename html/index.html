@@ -4,6 +4,9 @@
 <head>
     <title>Stock Alert</title>
     <link href="../css/index.css" rel="stylesheet" type="text/css">
+    <script src="http://code.jquery.com/jquery-3.4.1.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -31,18 +34,16 @@
 
     </div>
 </body>
+<script type="text/javascript" src="../js/index.js">
+</script>
 <script>
     const electron = require("electron");
     const { ipcRenderer } = electron;
-    console.log(ipcRenderer);
     const h1 = document.querySelector("#phone");
-    console.log("1.1");
     ipcRenderer.on("item:number", function (e, number) {
         //Here number is the Users Phone Number
-
+        console.log(number);
     });
-
-
 </script>
 
 </html>
