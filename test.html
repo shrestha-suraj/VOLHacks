@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>API Testing</title>
+   
+    <script
+  src="http://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<!-- <script src='script.js'></script> -->
+
+</head>
+<body>
+        <form id='form1'><input type="text" placeholder="Search.." id="symb">
+            <button type="submit" id="submit">Search</button>
+      </form>
+    
+      <script>
+            const form=document.querySelector("#form1");
+            form.addEventListener("submit",function(e){
+                const stocksym=document.querySelector("#symb").value;
+                 console.log(stocksym);
+                 e.preventDefault();
+              
+                let obje =new Object();
+                $.getJSON(
+                `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${stocksym}&apikey=PS2EH1AW4CFUT7LM`,
+                function (check2) {
+                    obje._symbol=check2["bestMatches"][0]['1. symbol'];
+                    obje._name=check2['bestMatches'][0]['2. name'];
+
+
+                });
+                $.getJSON(
+                `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${stocksym}&interval=1min&apikey=PS2EH1AW4CFUT7LM`,
+                function (check) {
+                 
+                    
+                    var price = JSON.stringify(check["Time Series (1min)"]).substring(2, 21);
+                    obje._price=check["Time Series (1min)"][price]["4. close"];
+                    console.log(obje);
+
+                });
+                console.log(obje)
+            // });
+        //     const farm = document.querySelector("#form1");
+        // farm.addEventListener("submit", function (e) {
+        //     const stocksym = document.querySelector("#symb").value;
+
+        //     $.getJSON(
+        //         `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${stocksym}&apikey=PS2EH1AW4CFUT7LM`,
+        //         function (check1) {
+        //             console.log(check1);
+        //             var sym1= JSON.stringify(check1)
+        //              var last2 = sym1.substring(1,100)
+        //             $(".info").append(last2, farm);
+
+        //         });
+            
+        });
+            </script>
+
+    <div class="stock">
+        <p class= 'info' > </p>
+        
+    </div>
+    
+</body>
+</html>
