@@ -1,24 +1,47 @@
-var button=document.querySelector("#search_button");
-button.addEventListener("click",searchStock);
 
-function searchStock(e){
-    var stockSymbol=document.querySelector("#stockSymbol").value;
+
+var button = document.querySelector("#search_button");
+button.addEventListener("click", searchStock);
+function searchStock(e) {
+    var stock_symbol = null;
+    var stock_value = null;
+    var stockSymbol = document.querySelector("#stockSymbol").value;
     e.preventDefault();
-    let stockObj=new Object();
     $.getJSON(
-        `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${stockSymbol}&apikey=PS2EH1AW4CFUT7LM`,
-        function (checkObj){
-            stockObj._symbol=checkObj["bestMatches"][0]["1. symbol"];
-            stockObj._name=checkObj["bestMatches"][0]["2. name"];
+        `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${stockSymbol}&interval=1min&apikey=ZB7L72AR2L8OL173`,
+        function (checkObj) {
+            stock_symbol = checkObj['Meta Data']['2. Symbol'];
+            stock_value = checkObj['Time Series (1min)']['2019-09-27 14:21:00']['4. close'];
+            var count=0;
+            (function($){
+                jQuery.fn.checkEmpty = function() {
+                   return !$.trim(this.html()).length;
+                };
+            }(jQuery));
+            for (var i=1;i<=3;i++){
+                if($(`#box${i}`).checkEmpty()){
+                    var card = document.getElementById(`box${i}`);
+                    var trigger = document.getElementById(`row${i}`);
+                    card.innerHTML="<span><h2>"+stock_symbol+"</h2><br/>"+"<h3>"+stock_value+"</h3></span>";
+                    trigger.innerHTML="<h2>"+stock_symbol+"</h2><span><input type='number' placeholder='Trigger Price' id='trigger-price'"+i+"> <button id='save-trigger'"+i+">Save</button></span>";
+                    break;    
+               }else{
+                   if(i===3){
+                       alert("Please Clear A Spot First");
+                   }
+               }
+                
+                // console.log(card);
+            }
         }
-    );
-    $.getJSON(
-        `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${stockSymbol}&interval=1min&apikey=PS2EH1AW4CFUT7LM`,
-        function (checkPrice){
-            var price=JSON.stringify(checkPrice["Time Series (1min)"]).substring(2, 21);
-            stockObj._price=checkPrice["Time Series (1min)"][price]["4. close"];
-        }
-    );
+    )
 
-    console.log(stockObj);
 }
+
+var addButton=document.getElementById("save-trigger1");
+addButton.addEventListener("click",function(){
+    var amount=document.getElementById("trigger-price1").value;
+});
+
+
+

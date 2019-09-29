@@ -15,11 +15,13 @@ app.on("ready", function () {
 
     });
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, "html", "home.html"),
+        pathname: path.join(__dirname, "html", "index.html"),
         protocol: 'file:',
         slashes: true
     }));
-    mainWindow.setMenu(null);
+    const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
+ //Insert Menu
+ Menu.setApplicationMenu(mainMenu);
 });
 
 ipcMain.on("item:number", function (e, number) {
@@ -32,3 +34,53 @@ ipcMain.on("item:number", function (e, number) {
         mainWindow.webContents.send("item:number",number);
     });
 });
+const mainMenuTemplate = [
+    {
+        label: 'Electron'
+    }
+   ,
+    {
+        label:'File',
+        submenu: [
+            {
+                label:'Add item',
+                click(){
+                    createAddWindow();
+                }
+            },
+            {
+                label:'Clear items',
+                click(){
+                    mainWindow.webContents.send('item: clear');
+                }
+            },
+            {
+                label: 'Quit',
+                accelerator: process.platform == 'darwin' ? 'Command+Q':
+                'Ctrl+Q',
+                click(){
+                    app.quit();
+                }
+            }
+        ]
+        
+    }
+];
+if(process.env.NODE_ENV !== 'production'){
+    mainMenuTemplate.push({
+        label: 'Developer Tools',
+        submenu:[
+            {
+                label: 'Toggle Dev Tools',
+                accelerator: process.platform == 'darwin' ? 'Command+I':
+                'Ctrl+I',
+                click(item, focusedWindow){
+                    focusedWindow.toggleDevTools();
+                }
+            },
+            {
+                role: 'reload'
+            }
+        ]
+    });
+}

@@ -83,7 +83,42 @@ button{
     border-radius:10px;
     width:inherit;
     height:100%;
+    
     background-color:#FFF176;
+}
+
+.card-container{
+    height:80%;
+    display:grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr; 
+}
+.card{
+    border-radius: 30px;
+}
+.final_card{
+    width:80%;
+    height:60%;
+    background-color:green;
+    color:white;
+    margin:10px auto auto auto;
+    border-radius: 20px;
+    display: table;
+}
+#box1>span{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+#box2>span{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+#box3>span{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .price-trigger{
@@ -91,4 +126,59 @@ button{
     height:100%;
     width:inherit;
     background-color:#90CAF9;
+    border:solid black 2px;
 }
+.trigger-container{
+    height:80%;
+    display:grid;
+    grid-gap: 10px;
+    width:100%;
+    grid-template-rows: 1fr 1fr 1fr; 
+}
+.each-row{
+}
+.final_trigger{
+    width:90%;
+    height:70%;
+    color:white;
+    margin:7px auto auto auto;
+    border-radius: 20px;
+}
+#row1{
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+    text-align: center;
+}
+#row2{
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+    text-align: center;
+}
+#row3{
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+    text-align: center;
+}
+#row1>h2{
+    margin-top:20px;
+}
+#row2>h1{
+    margin-top:20px;
+ }
+#row3>h1{
+    margin-top:20px;
+ }
+ #save-trigger{
+    border-radius:5px;
+    border:none;
+    background-color:#00a2ed;
+    color:white;
+    margin:15px 3px 0px 10px;
+    padding:10px 5px 7px 5px;
+    transition:all 0.4 sec ease;
+ }
+ #save-trigger:hover{
+    background-color:lightgreen;
+    transform:scale(1.1);
+}
+

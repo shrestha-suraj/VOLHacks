@@ -4,9 +4,9 @@
 <head>
     <title>Stock Alert</title>
     <link href="../css/index.css" rel="stylesheet" type="text/css">
-    <script src="http://code.jquery.com/jquery-3.4.1.js"
-    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-    crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+        crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -23,12 +23,57 @@
         <!---Header Before This Code-->
 
         <div class="stock-list">
-            <br/>
-                <b><center>Watch List<hr/></center></b>
+            <br />
+            <b>
+                <center>Watch List
+                    <hr />
+                </center>
+            </b>
+            <br/><br/>
+            <div class="card-container">
+                <div class="card">
+                    <div id="box1" class="final_card">
+                    </div>
+                </div>
+                <div class="card">
+                    <div id="box2" class="final_card">
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div id="box3" class="final_card">
+
+                    </div>
+                </div>
+
+            </div>
         </div>
+
+        <!--WatchList Before This Code-->
         <div class="price-trigger">
-                <br/>
-                <b><center>Trigger<hr/></center></b>
+            <br />
+            <b>
+                <center>Trigger
+                    <hr />
+                </center>
+            </b>
+            <div class="trigger-container">
+                    <div class="each-row">
+                        <div id="row1" class="final_trigger">
+                        </div>
+                    </div>
+                    <div class="each-row">
+                        <div id="row2" class="final_trigger">
+    
+                        </div>
+                    </div>
+                    <div class="each-row">
+                        <div id="row3" class="final_trigger">
+    
+                        </div>
+                    </div>
+    
+                </div>
 
         </div>
 
@@ -37,13 +82,13 @@
 <script type="text/javascript" src="../js/index.js">
 </script>
 <script>
-    const electron = require("electron");
-    const { ipcRenderer } = electron;
-    const h1 = document.querySelector("#phone");
-    ipcRenderer.on("item:number", function (e, number) {
-        //Here number is the Users Phone Number
-        console.log(number);
-    });
+    // const electron = require("electron");
+    // const { ipcRenderer } = electron;
+    // const h1 = document.querySelector("#phone");
+    // ipcRenderer.on("item:number", function (e, number) {
+    //     //Here number is the Users Phone Number
+    //     console.log(number);
+    // });
 </script>
 
 </html>
