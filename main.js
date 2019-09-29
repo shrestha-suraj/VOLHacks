@@ -8,14 +8,14 @@ let mainWindow;
 
 app.on("ready", function () {
     mainWindow = new BrowserWindow({
-        width: 500,
-        height: 600,
+        width: 550,
+        height: 700,
         resizable: false,
         webPreferences: { nodeIntegration: true }
 
     });
     mainWindow.loadURL(url.format({
-        pathname: path.join(__dirname, "html", "home.html"),
+        pathname: path.join(__dirname, "html", "index.html"),
         protocol: 'file:',
         slashes: true
     }));

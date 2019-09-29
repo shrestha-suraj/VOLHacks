@@ -1,0 +1,94 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    background-color:#81C784;
+    overflow-y:hidden;
+}
+hr{
+    padding:0;
+    margin:0;
+    width:85%;
+    border:solid black 1px;
+}
+.container{
+    height:100vh;
+    border:solid red;
+    display:grid;
+    grid-template-rows: 0.3fr 2fr 2fr;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header{
+    background-color:brown;
+    margin:10px 10px 10px 10px;
+    display:grid;
+    width:inherit;
+    height:100%;
+    border-radius: 10px;
+    grid-gap: 10px;
+    grid-template-columns: 1.5fr 2fr;
+}
+.user-phone{
+    border-radius: 10px;
+    display:table;
+    height: inherit;
+}
+.header-text{
+    margin:0;
+    padding:0;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    color:white;
+}
+.search-form{
+    border-radius: 10px;
+}
+
+
+input{
+    margin:15px 3px 0px 10px;
+    padding:10px 5px 10px 5px;
+    border:none;
+    border-radius:5px;
+    color:black;
+}
+button{
+    border-radius:5px;
+    border:none;
+    background-color:#00a2ed;
+    color:white;
+}
+#search_button{
+    margin:15px 3px 0px 10px;
+    padding:10px 5px 7px 5px;
+    transition:all 0.4 sec ease;
+}
+#search_button:hover{
+    transform:scale(1.1);
+    color:black;
+}
+.button{
+    background-color:green;
+    transition:all 0.5s ease;
+    padding-right:5px;
+}
+
+.button:hover{
+    background-color:lightgreen;
+    transform:scale(1.1);
+}
+.stock-list{
+    border-radius:10px;
+    width:inherit;
+    height:100%;
+    background-color:#FFF176;
+}
+
+.price-trigger{
+    border-radius:10px;
+    height:100%;
+    width:inherit;
+    background-color:#90CAF9;
+}

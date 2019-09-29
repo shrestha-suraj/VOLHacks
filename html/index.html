@@ -3,34 +3,33 @@
 
 <head>
     <title>Stock Alert</title>
-    <link href="../css/mainWindow.css" rel="stylesheet"> 
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-    <div class='button'>
-        <button type="button">Add</button>
+    <div class="container">
+        <div class="header">
+            <div class="user-phone">
+                <span class="header-text">6628012989</span>
+            </div>
+            <div class="search-form">
+                <input type="text" placeholder="Stock Ticker" id="stockSymbol" />
+                <button id="search_button">ADD</button>
+            </div>
+        </div>
+        <!---Header Before This Code-->
+
+        <div class="stock-list">
+            <br/>
+                <b><center>Watch List<hr/></center></b>
+        </div>
+        <div class="price-trigger">
+                <br/>
+                <b><center>Trigger<hr/></center></b>
+
+        </div>
 
     </div>
-    <section class="watchList">
-        <p>Watch List</p>
-        <div class="list">
-
-        </div>
-
-    </section>
-
-    <section class="minMax">
-        <div class="rows">
-            <div class="trigger"> Trigger</div>
-            <div class="min">Min</div>
-            <div class="max">Max</div>
-            <div class="save">save</div>
-            <!-- <div class="delete">del</div> -->
-        </div>
-    </section>
-
-
-
 </body>
 <script>
     const electron = require("electron");
@@ -42,7 +41,8 @@
         //Here number is the Users Phone Number
 
     });
-    console.log("1.2");
+
+
 </script>
 
 </html>
