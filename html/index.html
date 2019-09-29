@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Stock Alert</title>
     <link href="../css/index.css" rel="stylesheet" type="text/css">
     <script src="http://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
         crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -29,19 +28,19 @@
                     <hr />
                 </center>
             </b>
-            <br/><br/>
+            <br /><br />
             <div class="card-container">
                 <div class="card">
-                    <div id="box1" class="final_card">
+                    <div id="box1" class="final_card" onclick='removeCard(1);'>
                     </div>
                 </div>
                 <div class="card">
-                    <div id="box2" class="final_card">
+                    <div id="box2" class="final_card" onclick='removeCard(2);'>
 
                     </div>
                 </div>
                 <div class="card">
-                    <div id="box3" class="final_card">
+                    <div id="box3" class="final_card" onclick='removeCard(3);'>
 
                     </div>
                 </div>
@@ -58,22 +57,22 @@
                 </center>
             </b>
             <div class="trigger-container">
-                    <div class="each-row">
-                        <div id="row1" class="final_trigger">
-                        </div>
+                <div class="each-row">
+                    <div id="row1" class="final_trigger">
                     </div>
-                    <div class="each-row">
-                        <div id="row2" class="final_trigger">
-    
-                        </div>
-                    </div>
-                    <div class="each-row">
-                        <div id="row3" class="final_trigger">
-    
-                        </div>
-                    </div>
-    
                 </div>
+                <div class="each-row">
+                    <div id="row2" class="final_trigger">
+
+                    </div>
+                </div>
+                <div class="each-row">
+                    <div id="row3" class="final_trigger">
+
+                    </div>
+                </div>
+
+            </div>
 
         </div>
 
@@ -82,6 +81,7 @@
 <script type="text/javascript" src="../js/index.js">
 </script>
 <script>
+    
     // const electron = require("electron");
     // const { ipcRenderer } = electron;
     // const h1 = document.querySelector("#phone");
@@ -89,6 +89,38 @@
     //     //Here number is the Users Phone Number
     //     console.log(number);
     // });
+    function changeDesign(i){
+                console.log("Click Triggered");
+                console.log(i);
+                var inpField = document.getElementById(`trigger-price${i}`);
+                console.log(inpField);
+                var amount = inpField.value;
+                console.log(amount);
+                var butttonUsed=document.getElementById(`save-trigger${i}`);
+                console.log(butttonUsed);
+                var button_text=butttonUsed.innerHTML;
+                console.log(button_text);
+                if (button_text !== "Add") {
+                    console.log(button_text);
+
+                    $(`#trigger-price1${i}`).prop('readonly', false);
+                    butttonUsed.innerHTML = "Add";
+                }
+                else {
+                    console.log(button_text);
+                    $(`#trigger-price${i}`).prop('readonly', true);
+                    butttonUsed.innerHTML = "Edit";
+                }
+            }
+
+            function removeCard(boxNum){
+                console.log(boxNum);
+                var box=document.getElementById(`box${boxNum}`);
+                console.log(box);
+                var rowDiv=document.getElementById(`row${boxNum}`);
+                box.innerHTML="";
+                rowDiv.innerHTML="";
+            }
 </script>
 
 </html>
