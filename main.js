@@ -5,7 +5,7 @@ const path = require("path");
 const { app, Menu, ipcMain, BrowserWindow } = electron;
 
 //create the twilio client
-const client = require('twilio')('', '')//Private ID and KEY
+const client = require('twilio')('AC43ba3e9f287a9a06328476ba7026315e', 'e38437a58759eab40c754301faa11ca5')//Private ID and KEY
 let mainWindow;
 
 app.on("ready", function () {
@@ -39,7 +39,7 @@ ipcMain.on("addNum", function (e, number){
     client.messages.create({
         to:'+1'+number,
         from:'+12056511702',
-        body:'Hello World'
+        body:'Suraj is an ass'
     })
     .then((message)=> console.log(message.sid));
 });
